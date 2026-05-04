@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Caldicott — Where do you want to go?</title>
+  <meta name="description" content="Builder. Coach. Systems thinker. If you found this, you're curious. Good. Here's where that goes." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="David Caldicott" />
+  <meta property="og:description" content="If you found this, you're curious. Good. Here's where that goes." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #13100d;
+      --bg-card:   #1c1712;
+      --bg-hover:  #241e17;
+      --border:    rgba(200, 155, 80, 0.15);
+      --border-hover: rgba(200, 155, 80, 0.45);
+      --gold:      #c89b50;
+      --gold-light: #e8c278;
+      --cream:     #f0e6d3;
+      --muted:     #8a7d6a;
+      --tag:       rgba(200, 155, 80, 0.12);
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 0 4rem;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Warm glow at top */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(200,155,80,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ────────────────────────────────────── */
+
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 3.5rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(2.6rem, 9vw, 3.4rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: var(--cream);
+      animation: fadeDown 0.7s ease both;
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.4rem auto;
+      animation: fadeIn 0.9s ease 0.2s both;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.7;
+      animation: fadeIn 0.9s ease 0.35s both;
+    }
+
+    .intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(240, 230, 211, 0.65);
+      margin-top: 1rem;
+      line-height: 1.65;
+      padding: 0 0.5rem;
+      animation: fadeIn 0.9s ease 0.5s both;
+    }
+
+    /* ── NAV LIST ──────────────────────────────────── */
+
+    nav {
+      position: relative;
+      z-index: 1;
+      padding: 0.5rem 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .path {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--cream);
+      transition:
+        background 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.18s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .path:nth-child(1) { animation-delay: 0.15s }
+    .path:nth-child(2) { animation-delay: 0.22s }
+    .path:nth-child(3) { animation-delay: 0.29s }
+    .path:nth-child(4) { animation-delay: 0.36s }
+    .path:nth-child(5) { animation-delay: 0.43s }
+    .path:nth-child(6) { animation-delay: 0.50s }
+    .path:nth-child(7) { animation-delay: 0.57s }
+    .path:nth-child(8) { animation-delay: 0.64s }
+
+    .path::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(200,155,80,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .path:hover,
+    .path:focus-visible {
+      background: var(--bg-hover);
+      border-color: var(--border-hover);
+      transform: translateX(3px);
+    }
+
+    .path:hover::before { opacity: 1; }
+    .path:active { transform: translateX(2px) scale(0.99); }
+
+    .path-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .path-label {
+      font-size: 0.975rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+
+    .path-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .path-arrow {
+      color: var(--gold);
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .path:hover .path-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Tag for highlighted items */
+    .path-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--tag);
+      border: 1px solid rgba(200,155,80,0.2);
+      border-radius: 4px;
+      padding: 0.15em 0.55em;
+      margin-top: 0.2rem;
+      align-self: flex-start;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem 2rem 0;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
+    /* ── ANIMATIONS ────────────────────────────────── */
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+
+    @media (min-width: 520px) {
+      header { padding: 4rem 2.5rem 2rem; }
+      nav    { padding: 0.5rem 2rem 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1 class="name">David <em>Caldicott</em></h1>
+    <div class="divider"></div>
+    <p class="tagline">Builder &nbsp;·&nbsp; Coach &nbsp;·&nbsp; Systems Thinker &nbsp;·&nbsp; Norwich</p>
+    <p class="intro">You found this.<br>Curious where to go? Pick a door.</p>
+  </header>
+
+  <nav>
+
+    <!-- 1 -->
+    <a class="path" href="https://davidcaldicott.online/contact" aria-label="Game of Authenticity">
+      <div class="path-left">
+        <span class="path-label">Want to try The Game of Authenticity?</span>
+        <span class="path-sub">An experience. Not a quiz. Not a test.</span>
+        <span class="path-tag">Coming soon</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 2 -->
+    <a class="path" href="https://www.linkedin.com/in/davidcaldicott" aria-label="Channels and Vibes">
+      <div class="path-left">
+        <span class="path-label">Check out my channels &amp; vibes</span>
+        <span class="path-sub">LinkedIn, socials, what I'm making</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 3 -->
+    <a class="path" href="https://davidcaldicott.online" aria-label="Products and Projects">
+      <div class="path-left">
+        <span class="path-label">Check out my products &amp; projects</span>
+        <span class="path-sub">AI systems, coaching frameworks, things I build</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 4 -->
+    <a class="path" href="https://davidcaldicott.online/services" aria-label="Business">
+      <div class="path-left">
+        <span class="path-label">Business?</span>
+        <span class="path-sub">Fractional CSO, AI/automation, strategic advisory</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 5 -->
+    <a class="path" href="https://davidcaldicott.online/contact" aria-label="Coaching - Want to talk">
+      <div class="path-left">
+        <span class="path-label">Want to talk?</span>
+        <span class="path-sub">Coaching · authenticity · getting unstuck<br>Online — or in person, Norwich &amp; beyond</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 6 -->
+    <a class="path" href="https://davidcaldicott.online/contact" aria-label="Walk and talk">
+      <div class="path-left">
+        <span class="path-label">Want to walk &amp; talk?</span>
+        <span class="path-sub">Actual walking. Actual talking. Norwich.</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 7 -->
+    <a class="path" href="https://davidcaldicott.online/contact" aria-label="Invest">
+      <div class="path-left">
+        <span class="path-label">Want to invest in something meaningful?</span>
+        <span class="path-sub">KIMBA · SAHARA · Connect Your Dots · what's next</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+    <!-- 8 -->
+    <a class="path" href="mailto:david@davidcaldicott.online?subject=I%20want%20a%20job" aria-label="Work with David">
+      <div class="path-left">
+        <span class="path-label">Want a job?</span>
+        <span class="path-sub">Or to collaborate. Come find me.</span>
+      </div>
+      <span class="path-arrow">→</span>
+    </a>
+
+  </nav>
+
+  <footer>
+    <p>@davidcaldicott &nbsp;·&nbsp; <a href="https://davidcaldicott.online">davidcaldicott.online</a></p>
+  </footer>
+
+</body>
+</html>
